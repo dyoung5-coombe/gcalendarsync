@@ -181,7 +181,10 @@ function updateEvent(calEvent, sheetEvent){
   sheetEvent.sendInvites = SEND_EMAIL_INVITES;
   if (sheetEvent.endtime === '') {
     calEvent.setAllDayDate(sheetEvent.starttime);
-  } else if(sheetEvent.endtime.getHours() == 0 && sheetEvent.endtime.getMinutes() == 0 ){
+  } else if(sheetEvent.starttime.getHours() == 0 &&
+            sheetEvent.starttime.getMinutes() == 0 &&
+            sheetEvent.endtime.getHours() == 0 &&
+            sheetEvent.endtime.getMinutes() == 0){
     sheetEvent.endtime.setDate(sheetEvent.endtime.getDate() + 1);
     calEvent.setAllDayDates(sheetEvent.starttime, sheetEvent.endtime);
   } else {
@@ -413,7 +416,10 @@ function syncToCalendar() {
       sheetEvent.sendInvites = SEND_EMAIL_INVITES;
       if (sheetEvent.endtime === '') {
         newEvent = calendar.createAllDayEvent(sheetEvent.title, sheetEvent.starttime, sheetEvent);
-      } else if(sheetEvent.endtime.getHours() == 0 && sheetEvent.endtime.getMinutes() == 0 ){
+      } else if(sheetEvent.starttime.getHours() == 0 &&
+                sheetEvent.starttime.getMinutes() == 0 &&
+                sheetEvent.endtime.getHours() == 0 &&
+                sheetEvent.endtime.getMinutes() == 0){
         sheetEvent.endtime.setDate(sheetEvent.endtime.getDate() + 1);
         newEvent = calendar.createAllDayEvent(sheetEvent.title, sheetEvent.starttime, sheetEvent.endtime, sheetEvent);
       } else {
